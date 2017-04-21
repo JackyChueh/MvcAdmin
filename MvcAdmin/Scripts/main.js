@@ -1,7 +1,10 @@
 ﻿function PageInit()
 {
-    
+    $(document).ajaxStart(function () {
+        $.blockUI({ message: null, css: { backgroundColor: '#000', color: '#fff', opacity: .1 } });
+    }).ajaxStop($.unblockUI);
 }
+
 
 function Block()
 {
@@ -36,6 +39,7 @@ function RenderContent(url) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr.status);
+            alert(ajaxOptions);
             alert(thrownError);
         }
     });

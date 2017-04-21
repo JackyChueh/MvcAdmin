@@ -9,7 +9,8 @@ namespace MvcAdmin
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -21,7 +22,8 @@ namespace MvcAdmin
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                            "~/Scripts/rwd.js",
                            "~/Scripts/app.js",
-                           "~/Scripts/main.js"
+                           "~/Scripts/main.js",
+                           "~/Scripts/jquery.blockUI.js"
                            ));
 
             // 使用開發版本的 Modernizr 進行開發並學習。然後，當您

@@ -194,6 +194,7 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.woff2" />
     <Content Include="Fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\LocalDeploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Images\header.jpg" />
     <Content Include="Scripts\app.js" />
