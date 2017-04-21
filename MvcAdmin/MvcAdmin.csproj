@@ -249,6 +249,20 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SystemCenter\Repository.Implement.EL\Repository.Implement.EL.csproj">
+      <Project>{98ab593f-299a-4ba9-96c0-1116c0114453}</Project>
+      <Name>Repository.Implement.EL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SystemCenter\Repository.Interface\Repository.Interface.csproj">
+      <Project>{864e7fe3-d710-401f-918f-86b637de37f3}</Project>
+      <Name>Repository.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SystemCenter\SystemCenter\SystemCenter.csproj">
+      <Project>{88dca456-46b2-455e-9b4d-67a206123588}</Project>
+      <Name>SystemCenter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
