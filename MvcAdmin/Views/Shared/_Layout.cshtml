@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/rwd")
+    @Styles.Render("~/Content/app")
+
+    @*    <link rel="apple-touch-icon" href="favicon.ico">*@
+    @*    <link rel="icon" type="image/png" sizes="192x192" href="@Url.Content("~/Images/header.png")" />*@
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Theme initialization -->
+    @*    <script>
+        var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {};
+        var themeName = themeSettings.themeName || '';
+        //themeName = 'green';
+        if (themeName) {
+            //alert(themeName);
+            //document.write('<link rel="stylesheet" id="theme-style" href="Content/app-' + themeName + '.css">');
+            document.write('<link href="@Url.Content("~/Content/")app-' + themeName + '.css" rel="stylesheet" type="text/css" />');
+        }
+        else {
+            //document.write('<link rel="stylesheet" id="theme-style" href="../Content/app.css">');
+            var defaultCss = "app.css";
+            document.write('<link href="@Url.Content("~/Content/")' + defaultCss + '" rel="stylesheet" type="text/css" />');
+        }
+    </script>*@
+
+    @if (IsSectionDefined("Content"))
+    {
+        @RenderSection("Content", required: false)
+    }
+    else
+    {
+@*<p>Section not define.</p>*@
+    }
+
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="app" id="app">
+
+            @Html.Partial("Header", "Main")
+            @*            @Html.Action("Header", "Main")*@
+
+            @*            @Html.Partial("Menu")*@
+            @Html.Action("Menu", "Main")
+
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+            <div id="content1">
+                @RenderBody()
+            </div>
+            @Html.Partial("Footer", "Main")
+            @*            @Html.Action("Footer", "Main")*@
+
+        </div>
+    </div>
+
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+        <div class="color-primary"></div>
+        <div class="chart">
+            <div class="color-primary"></div>
+            <div class="color-secondary"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/rwd")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", required: false)
+    <script>
+        function loadpage() {
+            //$(document).ajaxStart(function () {
+            //    //show a progress modal of your choosing
+            //    showProgressModal('loading');
+            //});
+            //$(document).ajaxStop(function () {
+            //    //hide it
+            //    hideProgressModal();
+            //});
+
+            $.ajax({
+                url: '/taiwantaxi/Create',
+                dataType: 'html',
+                success: function (data) {
+                    $('#content1').html(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }
+
+        $("#test1").click(function () {
+            loadpage();
+        });
+
+    </script>
+</body>
+</html>

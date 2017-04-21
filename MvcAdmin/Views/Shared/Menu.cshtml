@@ -1,0 +1,46 @@
+﻿@model List<SystemCenter.FUNCTION>
+<aside class="sidebar">
+    <div class="sidebar-container">
+        <div class="sidebar-header">
+            <div class="brand">
+                <span class="fa fa-cloud fa-lg"></span>
+                ChuehNet
+            </div>
+        </div>
+        <nav class="menu">
+            <ul class="nav metismenu" id="sidebar-menu">
+                @foreach (var item in Model)    //Layer 1 (S)
+                {
+                    <li>
+                        <a href="@item.FUN_PATH"><i class="fa fa-th-large" ></i>@item.FUN_NAME
+                            @if (item.ChildMenuItems.Any())
+                            {<i class="fa arrow"></i>}</a>
+                        @if (item.ChildMenuItems.Any())
+                        {
+                            <ul>
+                                @foreach (var subitem in item.ChildMenuItems)   //Layer 2 (F)
+                                {
+                                    <li>
+                                        <a href="@subitem.FUN_PATH"><i @*class="fa fa-th"*@ ></i>@subitem.FUN_NAME
+                                            @if (subitem.ChildMenuItems.Any())
+                                            {<i class="fa arrow"></i>}</a>
+                                        @if (subitem.ChildMenuItems.Any())
+                                        {
+                                            <ul>
+                                                @foreach (var subitem3 in subitem.ChildMenuItems)   //Layer 3 (P)
+                                                {
+                                                    <li><a href="@Url.Content(subitem3.FUN_PATH)">@subitem3.FUN_NAME</a></li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</aside>
+

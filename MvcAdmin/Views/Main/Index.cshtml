@@ -1,0 +1,217 @@
+﻿@model List<SystemCenter.FUNCTION>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/main")
+
+    @*    <link rel="apple-touch-icon" href="favicon.ico">*@
+    @*    <link rel="icon" type="image/png" sizes="192x192" href="@Url.Content("~/Images/header.png")" />*@
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Theme initialization -->
+    @*    <script>
+        var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {};
+        var themeName = themeSettings.themeName || '';
+        //themeName = 'green';
+        if (themeName) {
+            //alert(themeName);
+            //document.write('<link rel="stylesheet" id="theme-style" href="Content/app-' + themeName + '.css">');
+            document.write('<link href="@Url.Content("~/Content/")app-' + themeName + '.css" rel="stylesheet" type="text/css" />');
+        }
+        else {
+            //document.write('<link rel="stylesheet" id="theme-style" href="../Content/app.css">');
+            var defaultCss = "app.css";
+            document.write('<link href="@Url.Content("~/Content/")' + defaultCss + '" rel="stylesheet" type="text/css" />');
+        }
+    </script>*@
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="app" id="app">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-block header-block-collapse hidden-lg-up">
+                    <button class="collapse-btn" id="sidebar-collapse-btn">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+@*                <div class="header-block header-block-search hidden-sm-down">
+                    <form role="search">
+                        <div class="input-container">
+                            <i class="fa fa-search"></i>
+                            <input type="search" placeholder="Search">
+                            <div class="underline"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="header-block header-block-buttons">
+                    <a href="https://github.com/modularcode/modular-admin-html" class="btn btn-oval btn-sm rounded-s header-btn"><i class="fa fa-github-alt"></i>View on GitHub </a>
+                    <a href="https://github.com/modularcode/modular-admin-html/releases/download/v1.0.1/modular-admin-html-1.0.1.zip" class="btn btn-oval btn-sm rounded-s header-btn"><i class="fa fa-cloud-download"></i>Download .zip </a>
+                </div>*@
+                <div class="header-block header-block-nav">
+                    <ul class="nav-profile">
+@*                        <li class="notifications new">
+                            <a href="" data-toggle="dropdown"><i class="fa fa-bell-o"></i><sup>
+                                <span class="counter">8</span>
+                            </sup></a>
+                            <div class="dropdown-menu notifications-dropdown-menu">
+                                <ul class="notifications-container">
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p><span class="accent">Zack Alien</span> pushed new commit: <span class="accent">Fix page load performance issue</span>. </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/5.jpg')"></div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p><span class="accent">Amaya Hatsumi</span> started new task: <span class="accent">Dashboard UI design.</span>. </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/8.jpg')"></div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p><span class="accent">Andy Nouman</span> deployed new version of <span class="accent">NodeJS REST Api V3</span> </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <footer>
+                                    <ul>
+                                        <li><a href="">View All
+    			          </a></li>
+                                    </ul>
+                                </footer>
+                            </div>
+                        </li>*@
+                        <li class="profile dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <div class="img" style="background-image: url('@Url.Content("~/images/header.jpg")')"></div>
+                                <span class="name">@User.Identity.Name</span></a>
+                            <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a class="dropdown-item" href="#"><i class="fa fa-user icon"></i>Profile </a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-bell icon"></i>Notifications </a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-gear icon"></i>Settings </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("UserLogout","Authority")"><i class="fa fa-power-off icon"></i>Logout </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!-- Header/ -->
+
+            <!-- Menu -->
+            <aside class="sidebar">
+                <div class="sidebar-container">
+                    <div class="sidebar-header">
+                        <div class="brand">
+                            <span class="fa fa-cloud fa-lg"></span>ChuehNet
+                        </div>
+                    </div>
+                    <nav class="menu">
+                        <ul class="nav metismenu" id="sidebar-menu">
+                            @foreach (var layer1 in Model)    //Layer 1 (S)
+                            {
+                                <li>
+                                    <a onclick="RenderContent('@layer1.FUN_PATH');"><i class="fa fa-th-large"></i>@layer1.FUN_NAME
+                                        @if (layer1.ChildMenuItems.Any())
+                                        {<i class="fa arrow"></i>}</a>
+                                    @if (layer1.ChildMenuItems.Any())
+                                    {
+                                        <ul>
+                                            @foreach (var layer2 in layer1.ChildMenuItems)   //Layer 2 (F)
+                                            {
+                                                <li>
+                                                    <a onclick="RenderContent('@layer2.FUN_PATH');"><i @*class="fa fa-th"*@ ></i>@layer2.FUN_NAME
+                                                        @if (layer2.ChildMenuItems.Any())
+                                                        {<i class="fa arrow"></i>}</a>
+                                                    @if (layer2.ChildMenuItems.Any())
+                                                    {
+                                                        <ul>
+                                                            @foreach (var layer3 in layer2.ChildMenuItems)   //Layer 3 (P)
+                                                            {
+                                                                <li><a onclick="RenderContent('@layer3.FUN_PATH');">@layer3.FUN_NAME</a></li>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <!-- Menu/ -->
+
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+            <!-- Body -->
+            <div id="render-body"></div>
+            <!-- Body/ -->
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-block buttons">
+                </div>
+                <div class="footer-block author">
+                    <ul>
+                        <li>Coding by Chueh </li>
+                    </ul>
+                </div>
+            </footer>
+            <!-- Footer/ -->
+        </div>
+    </div>
+
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+        <div class="color-primary"></div>
+        <div class="chart">
+            <div class="color-primary"></div>
+            <div class="color-secondary"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/main")
+
+    <script>
+     
+
+        $("#test1").click(function () {
+            testload();
+        });
+
+        function testload()
+        {
+            $('#render-body').load('/taiwantaxi/Create');
+        }
+    </script>
+
+</body>
+</html>

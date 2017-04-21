@@ -1,0 +1,106 @@
+﻿@model SystemCenter.AUTHORITY
+
+@*<script type="text/javascript">
+    $.ajax({
+        url: '@Url.Action("Create", "taiwantaxi",new {area="Security"})',
+        type: 'POST',
+        data: JSON.stringify(ai),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            alert(data);
+        },
+            error: function () {
+                alert("error");
+            }
+        });
+</script>*@
+<article class="content grid-page">
+    <div class="title-block">
+        <h3 class="title">@DateTime.Now.ToString();
+	</h3>
+        <p class="title-description">Grid elements </p>
+    </div>
+    <form id="frmCreateUser"  method="post">
+        @Html.LabelFor(m => m.USR_ID, "UserName:")
+        @Html.TextBoxFor(m => m.USR_ID, new { @class = "text-box" })
+        @Html.ValidationMessageFor(m => m.USR_ID)
+        <br />
+        @Html.LabelFor(m => m.FUN_ID, "Password:")
+        @Html.PasswordFor(m => m.FUN_ID, new { @class = "text-box" })
+        @Html.ValidationMessageFor(m => m.FUN_ID)
+        <br />
+        @Html.LabelFor(x => x.GRP_ID, "Email:")
+        @Html.TextBoxFor(x => x.GRP_ID)
+        @Html.ValidationMessageFor(x => x.GRP_ID)<br />
+
+        @*    @Html.TextBoxFor(@Model.USR_ID.ToString())
+    @Html.TextBoxFor(@Model.FUN_ID.ToString())
+    @Html.TextBoxFor(@Model.GRP_ID.ToString())
+    @Html.TextBoxFor(i => i.USR_ID)
+    @Html.TextBoxFor(i => i.FUN_ID)
+    @Html.TextBoxFor(i => i.GRP_ID)
+    @Html.TextBoxFor(i => i.CDATE)
+    @Html.TextBoxFor(i => i.MDATE)
+    @Html.DisplayFor(i => i.GRP_ID.ToString())*@
+        <input  type="submit" value="Create" class="btn btn-primary" />
+    </form>
+            <button id="btnSubmit" type="button" class="btn btn-primary">Primary</button>
+</article>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#frmCreateUser").submit(function (event) {
+            //var ai = {
+            //    USR_ID: "423 Judy Road",
+            //    FUN_ID: "1001",
+            //    GRP_ID: "New York",
+            //    CDATE: "2016/01/01",
+            //    MDATE: "2017/01/01",
+            //    Country: "USA"
+            //};
+
+            $.ajax(
+                  {
+                      url: '@Url.Action("Create", "taiwantaxi", new { area = "Security" })',
+                      type: 'POST',
+                      dataType: 'json',
+                      data: $(this).serialize(),
+                      //data: JSON.stringify(ai),
+                      success: function (result) {
+                          alert(JSON.stringify(result));
+                      },
+                      error: function (xhr) {
+                          alert(xhr.statusText);
+                      }
+                  });
+            event.preventDefault();
+        });
+
+        $("#btnSubmit").click(function (event) {
+            var ai = {
+                USR_ID: "423 Judy Road",
+                FUN_ID: "1001",
+                GRP_ID: "New York",
+                CDATE: "2016/01/01",
+                MDATE: "2017/01/01",
+                Country: "USA"
+            };
+
+            $.ajax(
+                  {
+                 
+                      url: '@Url.Action("Create", "taiwantaxi", new { area = "Security" })',
+                      type: 'POST',
+                      contentType: "application/json; charset=utf-8",
+                      dataType: 'json',
+                      data: JSON.stringify(ai),
+                      success: function (result) {
+                          alert(JSON.stringify(result));
+                      },
+                      error: function (xhr) {
+                          alert(xhr.statusText);
+                      }
+                  });
+            event.preventDefault();
+        });
+    });
+</script>

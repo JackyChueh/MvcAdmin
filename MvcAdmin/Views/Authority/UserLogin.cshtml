@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="@ViewBag.Lang">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/main")
+</head>
+
+<body>
+    <div class="auth">
+        <div class="auth-container">
+            <div class="card">
+                <header class="auth-header">
+                    
+                </header>
+                <div class="auth-content">
+                    <p class="text-xs-center">登入系統</p>
+                    <form id="login-form" action="@Url.Action("UserLogin")" method="POST" novalidate="">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="username">帳號</label>
+                            <input type="text" class="form-control " name="USR_ID" id="USR_ID" placeholder="Your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密碼</label>
+                            <input type="password" class="form-control " name="PWD" id="PWD" placeholder="Your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="remember">
+                                <input class="checkbox" id="remember" type="checkbox">
+                                <span>自動登入</span>
+                            </label>
+                            <a href="reset.html" class="forgot-btn pull-right">忘記密碼?</a>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-primary" style="height: 100px;">登入</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+        <div class="color-primary"></div>
+        <div class="chart">
+            <div class="color-primary"></div>
+            <div class="color-secondary"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/main")
+</body>
+
+</html>
