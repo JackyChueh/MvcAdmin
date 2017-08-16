@@ -38,9 +38,7 @@ function RenderContent(url) {
             $('#render-body').html(data);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr.status);
-            alert(ajaxOptions);
-            alert(thrownError);
+            alert('' + xhr.status + ';' + ajaxOptions + ';' + thrownError);
         }
     });
 }

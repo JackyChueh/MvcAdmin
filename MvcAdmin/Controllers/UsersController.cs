@@ -14,7 +14,7 @@ namespace MvcAdmin.Controllers
 
         public ActionResult Index()
         {
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(500);
             return View(new UsersImplement("SC").GetAll());
         }
 
