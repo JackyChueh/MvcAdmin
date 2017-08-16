@@ -35,7 +35,7 @@ namespace MvcAdmin.Controllers
         //}
         public ActionResult Create()
         {
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(2500);
             //var model = new MyModel();
 
             if (Request.IsAjaxRequest())
