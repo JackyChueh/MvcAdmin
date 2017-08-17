@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Repository.Implement.EL;
+using SystemCenter;
+using System.Web.Script.Serialization;
 
 namespace MvcAdmin.Controllers
 {
@@ -14,13 +16,19 @@ namespace MvcAdmin.Controllers
 
         public ActionResult Index()
         {
-            System.Threading.Thread.Sleep(2500);
-            return View(new UsersImplement("SC").GetAll());
+            System.Threading.Thread.Sleep(100);
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Select()
+        {
+            //var json = new JavaScriptSerializer().Serialize(new UsersImplement("SC").GetAll());
+            return Json(new UsersImplement("SC").GetAll());
         }
 
         //
         // GET: /Users/Details/5
-
         public ActionResult Details(int id)
         {
             return View();

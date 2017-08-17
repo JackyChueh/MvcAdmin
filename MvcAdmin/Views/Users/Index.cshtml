@@ -1,56 +1,65 @@
 ﻿@using SystemCenter
 @model List<USERS>
+<script src="~/Scripts/Users/Users.js"></script>
+<script type="text/javascript">$(document).ready(function ($) { InitPage(); });</script>     
 <article class="content responsive-tables-page">
     <div class="title-block">
-        <h3 class="title">Forms</h3>
-        <p class="title-description">Sample form elements </p>
+        <div class="form-inline">
+            <div class="form-group">
+                <h3 class="title">使用者帳號管理</h3>
+                <p class="title-description">Sample form elements </p>
+            </div>
+            <div class="form-group">
+                <button type="button" id="Query" class="btn btn-primary">查詢</button>
+            </div>
+        </div>
     </div>
     <div class="subtitle-block">
-                <div>
-            <div class="form-control-label text-xs-left col-xs-12 col-xl-12">
-                <label >使用者帳號</label>
-                    <input type="text">
-            </div>
-        </div>
         <div>
-            <div class="form-control-label text-xs-right col-xs-12 col-xl-12">
-                <label class="form-control-label" for="USR_IDX">使用者帳號</label>
-                    <input type="text" class=" form-control boxed" id="USR_IDX1" placeholder="必需包含英文與數字" style="float:left;">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label class="form-control-label" for="USR_ID">使用者帳號</label>
+                    <input type="text" class="form-control query" id="USR_ID" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="USR_NAME">使用者名稱</label>
+                    <input type="text" class="form-control query" id="USR_NAME" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="USR_STATUS">啟用</label>
+                    <select class="form-control query" id="USR_STATUS">
+                        <option value="1">啟用</option>
+                        <option value="0">停用</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="form-control-label text-xs-right col-xs-2 col-xl-1" for="USR_ID">使用者帳號</label>
-            <div class="form-group col-xs-10 col-xl-2">
-                <input type="text" class=" form-control boxed" id="USR_ID" placeholder="必需包含英文與數字">
-            </div>
-            <label class="form-control-label text-xs-right col-xs-2 col-xl-1" for="USR_NAME">使用者名稱</label>
-            <div class="form-group col-xs-10 col-xl-2">
-                <input type="text" class=" form-control boxed" id="USR_NAME" placeholder="中英文皆可">
-            </div>
-            <label class="form-control-label text-xs-right col-xs-2  col-xl-1">啟用</label>
-            <div class="form-group  col-xs-10 col-xl-2">
-                <select class="form-control form-control" id="USR_STATUS">
-                    <option value="1">啟用</option>
-                    <option value="0">停用</option>
-                </select>
-            </div>
-            <label class="form-control-label text-xs-right  col-xs-2 col-xl-1" for="USR_NAME4">使用者名稱</label>
-            <div class="form-group col-xs-10 col-xl-2">
-                <input type="text" class=" form-control boxed" id="USR_NAME4" placeholder="中英文皆可">
-            </div>
-        </div>
-        <div class="form-group row col-xs-12 col-xl-12">
-            <label class="">使用者帳號</label>
-            <input type="text" class="" id="USR_ID1" placeholder="必需包含英文與數字">
-            <label class="">使用者名稱</label>
-            <input type="text" class="" id="USR_NAME1" placeholder="中英文皆可">
+
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
+<table id="gridview" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(x => x.First().USR_ID)</th>
+                   <th>使用者帳號</th>
+                    <th>使用者名稱</th>
+                    <th>電子郵件</th>
+                    <th>帳號狀態</th>
+                    <th>備註</th>
+                    <th>建檔日期</th>
+                    <th>建檔人員</th>
+                    <th>修改日期</th>
+                    <th>修改人員</th>
+                </tr>
+            </thead>
+
+            <tbody>
+           
+            </tbody>
+        </table>
+        @* <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                   <th>@Html.DisplayNameFor(x => x.First().USR_ID)</th>
                     <th>@Html.DisplayNameFor(m => m.First().USR_NAME)</th>
                     <th>@Html.DisplayNameFor(m => m.First().EMAIL)</th>
                     <th>@Html.DisplayNameFor(m => m.First().USR_STATUS)</th>
@@ -77,6 +86,6 @@
                     </tr>
                 }
             </tbody>
-        </table>
+        </table>*@
     </div>
 </article>

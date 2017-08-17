@@ -47,7 +47,8 @@ namespace MvcAdmin
 
             bundles.Add(new StyleBundle("~/Content/main").Include(
                 "~/Content/rwd.css",
-                "~/Content/app.css"
+                "~/Content/app.css",
+                "~/Content/jc.css"
                 ));
         }
     }
