@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Repository.Implement.EL;
 using SystemCenter;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace MvcAdmin.Controllers
 {
@@ -21,10 +21,33 @@ namespace MvcAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult Select()
+        public String Select()
         {
             //var json = new JavaScriptSerializer().Serialize(new UsersImplement("SC").GetAll());
-            return Json(new UsersImplement("SC").GetAll());
+
+            var data = new UsersImplement("SC").GetAllPagging(1, 10);
+            //Pagging pg = new Pagging
+            //{
+            //    Data = data
+            //};
+
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                //MissingMemberHandling = MissingMemberHandling.Ignore;
+            };
+            var json = JsonConvert.SerializeObject(data, settings);
+            
+            //var json = JsonConvert.SerializeObject(data);
+            
+            return json;
+        }
+
+        [HttpPost]
+        public JsonResult Select2()
+        {
+            var data = new UsersImplement("SC").GetAll();   
+            return Json(data);
         }
 
         //

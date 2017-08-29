@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Interface", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemCenter", "..\SystemCenter\SystemCenter\SystemCenter.csproj", "{88DCA456-46B2-455E-9B4D-67A206123588}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectLibrary", "..\ProjectLibrary\ProjectLibrary\ProjectLibrary.csproj", "{4CCEC42C-0427-4F9F-B649-EBD34A883AF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{88DCA456-46B2-455E-9B4D-67A206123588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88DCA456-46B2-455E-9B4D-67A206123588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88DCA456-46B2-455E-9B4D-67A206123588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCEC42C-0427-4F9F-B649-EBD34A883AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCEC42C-0427-4F9F-B649-EBD34A883AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCEC42C-0427-4F9F-B649-EBD34A883AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCEC42C-0427-4F9F-B649-EBD34A883AF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

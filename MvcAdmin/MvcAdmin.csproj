@@ -253,6 +253,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ProjectLibrary\ProjectLibrary\ProjectLibrary.csproj">
+      <Project>{4ccec42c-0427-4f9f-b649-ebd34a883af8}</Project>
+      <Name>ProjectLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SystemCenter\Repository.Implement.EL\Repository.Implement.EL.csproj">
       <Project>{98ab593f-299a-4ba9-96c0-1116c0114453}</Project>
       <Name>Repository.Implement.EL</Name>

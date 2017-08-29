@@ -44,25 +44,52 @@ function Query(GoPage) {
         url: 'Users/Select',
         type: 'POST',
         data: queryCondition,
-        success: function (users) {
+        success: function (result) {
+            //debugger
             //alert(result);
-            //var users = jQuery.parseJSON(result);
+            $('#GridView >  tbody').html('');
+
+            var obj = jQuery.parseJSON(result);
             //console.log(users)
             var htmlRow = "";
-            $.each(users, function (idx, row) {
+            $.each(obj.Data, function (idx, row) {
                 htmlRow = '<tr>';
                 htmlRow += '<td>' + row.USR_ID + '</td>';
                 htmlRow += '<td>' + row.USR_NAME + '</td>';
-                htmlRow += '<td>' + row.EMAIL + '</td>';
+                htmlRow += '<td>' + (typeof (row.EMAIL) == "undefined" ? '' : row.EMAIL) + '</td>';
+                //if (typeof (row.EMAIL) == "undefined") {
+                //    htmlRow += '<td>' + row.EMAIL + '</td>';
+                //}
+                //else {
+                //    htmlRow += '<td></td>';
+                //}
+
                 htmlRow += '<td>' + row.USR_STATUS + '</td>';
                 htmlRow += '<td>' + row.MEMO + '</td>';
-                htmlRow += '<td>' + new Date(parseInt(row.CDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
+                //htmlRow += '<td>' + row.CDATE + '</td>';
+                htmlRow += '<td>' + (typeof (row.CDATE) == "undefined" ? '' : row.CDATE.substring(0, 19).replace('T', ' ')) + '</td>';
+
+                //htmlRow += '<td>' + new Date(parseInt(row.CDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
                 htmlRow += '<td>' + row.CUSER + '</td>';
-                htmlRow += '<td>' + new Date(parseInt(row.MDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
+                htmlRow += '<td>' + row.MDATE + '</td>';
+                //htmlRow += '<td>' + new Date(parseInt(row.MDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
                 htmlRow += '<td>' + row.MUSER + '</td>';
                 htmlRow += '</tr>';
-                $('#gridview >  tbody').append(htmlRow);
+                $('#GridView >  tbody').append(htmlRow);
             });
+
+            if (obj.RowCount > 0) {
+                $("#RowsCount").text('共' + obj.RowCount + '筆');
+                $("#Interval").text(obj.MinNumber + '-' + obj.MaxNumber);
+                $("#MaxNumber").text();
+                for (i = 1; i <= obj.PageCount; i++) {
+                    $("#PageCount").append($("<option></option>").attr("value", i).text(i));
+                }
+                $("#GridView > tfoot").show();
+            }
+            else {
+                $("#GridView > tfoot").css({ display: "none" });
+            }
             //alert(obj[0].USR_ID);
             //alert(result);
         },
@@ -73,6 +100,46 @@ function Query(GoPage) {
             //alert('complete');
         }
     });
+
+    //$.ajax({
+    //    url: 'Users/Select2',
+    //    type: 'POST',
+    //    data: queryCondition,
+    //    success: function (users) {
+    //        //console.log(users)
+    //        //debugger
+    //        var htmlRow = "";
+    //        $.each(users, function (idx, row) {
+    //            htmlRow = '<tr>';
+    //            htmlRow += '<td>222' + row.USR_ID + '</td>';
+    //            htmlRow += '<td>' + row.USR_NAME + '</td>';
+    //            //htmlRow += '<td>' + row.EMAIL + '</td>';
+    //            htmlRow += '<td>' + (row.EMAIL == null ? '' : row.EMAIL) + '</td>';
+    //            htmlRow += '<td>' + row.USR_STATUS + '</td>';
+    //            htmlRow += '<td>' + row.MEMO + '</td>';
+    //            //htmlRow += '<td>' + new Date(parseInt(row.CDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
+    //            //htmlRow += '<td>' + row.CDATE + '</td>';
+    //            htmlRow += '<td>' + (row.CDATE == null ? '' : new Date(parseInt(row.CDATE.replace(/\D/igm, ""))).toLocaleString()) + '</td>';
+    //            htmlRow += '<td>' + row.CUSER + '</td>';
+    //            //htmlRow += '<td>' + new Date(parseInt(row.MDATE.replace(/\D/igm, ""))).toLocaleString() + '</td>';
+    //            htmlRow += '<td>' + row.MDATE + '</td>';
+    //            htmlRow += '<td>' + row.MUSER + '</td>';
+    //            htmlRow += '</tr>';
+    //            $('#gridview >  tbody').append(htmlRow);
+    //        });
+    //        //alert(obj[0].USR_ID);
+    //        //alert(result);
+    //    },
+    //    error: function (xhr, ajaxOptions, thrownError) {
+    //        alert('' + xhr.status + ';' + ajaxOptions + ';' + thrownError);
+    //    },
+    //    complete: function (xhr, status) {
+    //        //alert('complete');
+    //    }
+    //});
+
+
+
 
     //$.ajax({
     //    type: 'POST',
